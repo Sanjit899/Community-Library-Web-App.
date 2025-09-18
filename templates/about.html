@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <h2 class="mb-3 text-center">About Community Library</h2>
+  <p class="lead text-center">Our mission is to make books accessible to students who cannot afford them. This demo app provides a production-like skeleton that you can extend.</p>
+
+  <!-- Mission and Vision Section -->
+  <div class="row mt-5">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <img src="{{ url_for('static', filename='images/team3.jpg') }}" class="card-img-top" alt="Mission">
+        <div class="card-body">
+          <h5 class="card-title">Our Mission</h5>
+          <p class="card-text">To provide free and easy access to books for students and learners from all backgrounds, ensuring education is within reach for everyone.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <img src="{{ url_for('static', filename='images/team1.jpeg') }}" class="card-img-top" alt="Vision">
+        <div class="card-body">
+          <h5 class="card-title">Our Vision</h5>
+          <p class="card-text">To become a community-driven library where students can borrow, learn, and grow without financial barriers, fostering a love for reading.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="mt-5">
+    <h3 class="mb-4 text-center">Meet Our Team</h3>
+    <div class="row text-center">
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/team1.jpeg') }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px; height:100px;" alt="Team Member">
+          <div class="card-body">
+            <h6 class="card-title">Sanjit Kumar</h6>
+            <p class="card-text text-muted">Founder & Developer</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/team2.jpg') }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px; height:100px;" alt="Team Member">
+          <div class="card-body">
+            <h6 class="card-title">Amit Sharma</h6>
+            <p class="card-text text-muted">Community Manager</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/team3.jpg') }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px; height:100px;" alt="Team Member">
+          <div class="card-body">
+            <h6 class="card-title">Priya Singh</h6>
+            <p class="card-text text-muted">Content & Outreach</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="card shadow-sm">
+          <img src="{{ url_for('static', filename='images/team4.jpg') }}" class="card-img-top rounded-circle mx-auto mt-3" style="width:100px; height:100px;" alt="Team Member">
+          <div class="card-body">
+            <h6 class="card-title">Rohit Verma</h6>
+            <p class="card-text text-muted">Tech Support</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="text-center mt-5 p-4 bg-light rounded shadow-sm">
+    <h4>Join Our Community</h4>
+    <p>Become a member today and start borrowing books, participating in events, and contributing to a better learning environment.</p>
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Register Now</a>
+  </div>
+</div>
+{% endblock %}

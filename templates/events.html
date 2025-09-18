@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block title %}Events & Announcements{% endblock %}{% block content %}
+<h2>Events</h2>
+{% if current_user.is_authenticated and current_user.is_admin %}
+<form method="post"><div class="mb-3"><input class="form-control" name="title" placeholder="Event title"></div><div class="mb-3"><input class="form-control" name="date" placeholder="YYYY-MM-DD"></div><div class="mb-3"><textarea class="form-control" name="description"></textarea></div><button class="btn btn-primary">Add event</button></form><hr>{% endif %}
+<ul>{% for e in events %}<li><strong>{{ e.title }}</strong> - {{ e.date }}<br>{{ e.description }}</li>{% else %}<li>No events</li>{% endfor %}</ul>
+{% endblock %}

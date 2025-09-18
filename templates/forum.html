@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% block title %}Community Forum{% endblock %}{% block content %}
+<h2>Forum</h2>
+{% if current_user.is_authenticated %}
+<form method="post"><div class="mb-3"><input class="form-control" name="title" placeholder="Post title" required></div><div class="mb-3"><textarea class="form-control" name="content" placeholder="Write..." required></textarea></div><button class="btn btn-primary">Post</button></form>
+{% else %}<p><a href="{{ url_for('login') }}">Login</a> to post.</p>{% endif %}
+<hr>
+{% for p in posts %}
+<div class="card mb-2"><div class="card-body"><h5>{{ p.title }}</h5><p class="small">by {{ p.author }} on {{ p.created }}</p><p>{{ p.content }}</p></div></div>
+{% else %}<p>No posts yet.</p>{% endfor %}
+{% endblock %}

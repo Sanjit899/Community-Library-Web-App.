@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% block title %}Manage Books{% endblock %}{% block content %}
+<h2>Add new book</h2>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3"><input class="form-control" name="title" placeholder="Title" required></div>
+  <div class="mb-3"><input class="form-control" name="author" placeholder="Author"></div>
+  <div class="mb-3"><input class="form-control" name="category" placeholder="Category"></div>
+  <div class="mb-3"><input class="form-control" name="isbn" placeholder="ISBN"></div>
+  <div class="mb-3"><textarea class="form-control" name="description" placeholder="Short description"></textarea></div>
+  <div class="mb-3"><input class="form-control" name="copies" placeholder="Copies" type="number" value="1"></div>
+  <div class="mb-3"><input class="form-control" name="cover" type="file"></div>
+  <div class="mb-3"><input class="form-control" name="ebook" type="file"></div>
+  <button class="btn btn-primary">Add book</button>
+</form>
+<hr>
+<h3>Existing books</h3>
+<div class="row">{% for b in books %}
+  <div class="col-md-3">
+    <div class="card mb-2">
+      <img src="{{ url_for('static', filename='images/' ~ b.image) }}" class="card-img-top">
+      <div class="card-body">
+        <h6>{{ b.title }}</h6>
+        <p class="small">by {{ b.author }}</p>
+        <form method="post" action="{{ url_for('delete_book', book_id=b._id) }}" onsubmit="return confirm('Delete?')"><button class="btn btn-sm btn-danger">Delete</button></form>
+      </div>
+    </div>
+  </div>
+{% endfor %}</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Home - Community Library{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h2>Featured Books</h2>
+    <div class="row">
+    {% for b in featured %}
+      <div class="col-md-4">
+         <div class="card mb-3">
+            <img src="{{ url_for('static', filename='images/' ~ b.image) }}" class="card-img-top" alt="cover">
+            <div class="card-body">
+              <h5 class="card-title">{{ b.title }}</h5>
+              <p class="card-text">{{ b.author }}</p>
+              <a href="{{ url_for('book_detail', book_id=b._id) }}" class="btn btn-primary btn-sm">View</a>
+            </div>
+         </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="col-md-4">
+     <h4>Search</h4>
+     <form action="{{ url_for('catalog') }}" method="get">
+       <div class="input-group mb-3">
+         <input name="q" class="form-control" placeholder="Search by title, author, isbn">
+         <button class="btn btn-outline-secondary">Search</button>
+       </div>
+     </form>
+     <h4>Announcements</h4>
+     {% for e in events %}
+       <div class="mb-2"><strong>{{ e.title }}</strong><br><small>{{ e.date }}</small><p>{{ e.description }}</p></div>
+     {% endfor %}
+  </div>
+</div>
+{% endblock %}

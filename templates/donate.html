@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% block title %}Donate{% endblock %}{% block content %}
+<h2>Donate a book or funds</h2>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3"><input class="form-control" name="donor_name" placeholder="Your name"></div>
+  <div class="mb-3"><input class="form-control" name="book_title" placeholder="Book title (optional)"></div>
+  <div class="mb-3"><input class="form-control" name="amount" placeholder="Monetary donation (optional)"></div>
+  <div class="mb-3"><input class="form-control" name="photo" type="file"></div>
+  <button class="btn btn-success">Donate</button>
+</form>
+<h3 class="mt-4">Recent donations</h3>
+<ul>{% for d in donations %}<li>{{ d.donor_name }} donated {{ d.book_title or d.amount }}</li>{% else %}<li>No donations yet.</li>{% endfor %}</ul>
+{% endblock %}

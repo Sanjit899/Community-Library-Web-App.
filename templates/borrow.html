@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Borrow Confirmation{% endblock %}
+{% block content %}
+<div class="card shadow p-4">
+  <h2 class="mb-3">Borrow Confirmation</h2>
+  <p>You have successfully borrowed the book:</p>
+  <ul>
+    <li><strong>Title:</strong> {{ book.title }}</li>
+    <li><strong>Author:</strong> {{ book.author }}</li>
+    <li><strong>Due Date:</strong> {{ due_date.strftime('%d %B %Y') }}</li>
+  </ul>
+
+  <div class="mt-4">
+    <a href="{{ url_for('catalog') }}" class="btn btn-primary">← Back to Catalog</a>
+    <a href="{{ url_for('my_borrowed') }}" class="btn btn-success">📚 View My Borrowed Books</a>
+  </div>
+</div>
+{% endblock %}

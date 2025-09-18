@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% block title %}Reports & Analytics{% endblock %}{% block content %}
+<h2>Reports & Analytics</h2>
+<ul>
+  <li>Total users: {{ stats.users }}</li>
+  <li>Total books: {{ stats.books }}</li>
+  <li>Currently borrowed: {{ stats.borrowed }}</li>
+</ul>
+<h3>Top borrowed books</h3>
+<ol>{% for b in top_books %}<li>{{ b.title }} — {{ b.count }} borrows</li>{% else %}<li>None</li>{% endfor %}</ol>
+{% endblock %}

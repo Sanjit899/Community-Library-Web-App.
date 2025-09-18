@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Hi, {{ current_user.username }}</h2>
+
+<!-- Borrowed Books Section -->
+<h4>Borrowed Books</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in borrows %}
+    <tr>
+      <td>{{ b.title }}</td>
+      <td>{{ b.due_date }}</td>
+      <td>{% if b.returned_date %}Returned{% else %}Borrowed{% endif %}</td>
+      <td>
+        {% if not b.returned_date %}
+        <a href="{{ url_for('return_book', borrow_id=b._id) }}" class="btn btn-sm btn-success">Return</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">No borrowed books</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Reservations Section -->
+<h4>Your Reservations</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Reserved On</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in reservations %}
+    <tr>
+      <td>{{ r.title }}</td>
+      <td>{{ r.date }}</td>
+      <td>{% if r.fulfilled %}Fulfilled{% else %}Pending{% endif %}</td>
+      <td>
+        <form method="POST" action="{{ url_for('cancel_reservation', reservation_id=r._id) }}" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">No reservations</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Reserve New Book Section -->
+<h4>Reserve a New Book</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book.title }}</td>
+      <td>{% if book.reserved %}Already Reserved{% else %}Available{% endif %}</td>
+      <td>
+        {% if not book.reserved %}
+        <form method="POST" action="{{ url_for('reserve', book_id=book._id) }}" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-primary">Reserve</button>
+        </form>
+        {% else %}
+        <button class="btn btn-sm btn-secondary" disabled>Reserved</button>
+        {% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="3">No books available</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

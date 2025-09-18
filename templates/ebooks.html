@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% block title %}E-books{% endblock %}{% block content %}
+<h2>E-books & Digital Resources</h2>
+<div class="row">
+{% for e in ebooks %}
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>{{ e.title }}</h5>
+        <p>{{ e.author }}</p>
+        <a href="{{ url_for('download_ebook', filename=e.filename) }}" class="btn btn-sm btn-primary">Download</a>
+      </div>
+    </div>
+  </div>
+{% else %}<p>No e-books yet.</p>{% endfor %}
+</div>
+{% endblock %}
